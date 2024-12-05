@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://localhost:4000/auth/rl" method="post">
+        <label for="name"> Name: <input type="text" name="name" id="name" required></label>
+        <label for="email"> Email: <input type="email" name="uname" id="email" required></label>
+        <label for="pwd-r"> Password: <input type="password" name="password" id="pwd-r" required></label>
+        <input type="submit" value="register">
+
+    </form>
+    <br><br>
+    <form action="http://localhost:4000/auth/rl" method="get">
+        <label for="uname"> Username: <input type="text" name="uname" id="uname" required></label>
+        <label for="pwd-l">password: <input type="password" name="password" id="pwd-l"></label>
+        <input type="submit" value="login">
+    </form>
+</body>
+</html>
