@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1= title
+    ul
+        each item in items
+            li
+                | #{item.name}: #{item.description}
+                form(action="/edit/#{item._id}", method="POST") 
+                    input(type="text", name="name", value=item.name)
+                    input(type="text", name="description", value=item.description)
+                    button(type="submit") Edit
+                form(action="/delete/#{item._id}", method="POST")
+                    button(type="submit") Delete
+
+    // Add a new item
+    h2 Add New Item
+    form(action="/add", method="POST")
+        input(type="text", name="name", placeholder="Name")
+        input(type="text", name="description", placeholder="Description")
+        button(type="submit") Add
