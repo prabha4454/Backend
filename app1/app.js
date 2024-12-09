@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost:27017/yourDatabase', {
   useUnifiedTopology: true
 })
 const db=mongoose.connection;
-db.on('error',console.error.bing(console))
+db.on('error',console.error.bind(console))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

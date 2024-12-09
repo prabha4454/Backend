@@ -1,0 +1,9 @@
+extends layout
+
+block content
+ // Add a new item
+ h2 Add New Item
+    form(action="/addU", method="POST")
+        input(type="text", name="uname", placeholder="Enter user name")
+        input(type="password", name="password", placeholder="Set password")
+        button(type="submit") Add

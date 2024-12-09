@@ -2,4 +2,22 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  
+   ul 
+     each user in users 
+         
+            li  
+              div  
+               form(action="/edit/#{item._id}", method="POST") 
+                    input(type="text", name="uname", value=user.uname)
+                    input(type="text", name="password", value=user.password)
+                
+                    button(type="submit") Edit
+              div    
+                form(action="/delete/#{item._id}", method="POST")
+                    button(type="submit") Delete
+
+
+
+
+
