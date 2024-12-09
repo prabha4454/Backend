@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 const bodyParser = require('body-parser');
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/yourDatabase', {
+mongoose.connect('mongodb+srv://hprabha72:traCeI1r26yKWPqY@cluster0.bafds.mongodb.net/userD',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

@@ -24,8 +24,8 @@ const User=require('../../model/item')
 exports.addUser=async(req,res,next)=>{
 
     const newItem = new User({
-        uname: req.body.uame,
-        password: req.body.password,
+        uname: req.body.uname,
+        password: req.body.password
     });
     try {
         await newItem.save();

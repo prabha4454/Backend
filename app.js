@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 
 
-mongoose.connect('mongodb://localhost:27017/yourDatabase', {
+mongoose.connect('mongodb://localhost:27017/userDetails', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
