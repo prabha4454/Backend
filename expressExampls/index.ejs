@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <h1>
+            <%= title %>
+        </h1>
+    </title>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <h2>List</h2>
+                </th>
+                <th>
+                    <h2>Action - Edit</h2>
+                </th>
+                <th>
+                    <h2>Delete</h2>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% items.forEach(function(item) { %>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <form action="/edit/<%= item._id %>" method="POST">
+                            <input type="text" name="name" value="<%= item.name %>">
+                            <input type="text" name="description" value="<%= item.description %>">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/delete/<%= item._id %>" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% if(item.name.length>6){ %>
+
+                   <p><span style="color: red; font-size: 20px;"><%= item.name %>:</span> <%= item.description %></p> 
+
+                    <% }; %>
+
+                <% }) %>
+        </tbody>
+    </table>
+
+    <table>
+        <tr>
+            <th colspan="3">
+                <h2>Add New Item</h2>
+            </th>
+        </tr>
+        <tr>
+            <form action="/add" method="POST">
+                <td>
+                    <input name="name" placeholder="Name">
+                </td>
+                <td>
+                    <input name="description" placeholder="Description">
+                </td>
+                <td>
+                    <input type="submit" value="submit">
+                </td>
+            </form>
+        </tr>
+    </table>
+</body>
+
+</html>

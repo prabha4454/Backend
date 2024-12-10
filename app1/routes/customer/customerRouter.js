@@ -87,3 +87,16 @@ exports.addUser=async(req,res,next)=>{
         res.status(500).send('Error deleting item');
     }
 }
+
+/* 
+//get
+//view2 home
+ */
+exports.view2Home=async(req,res,next)=>{
+    try{
+res.sendfile(path.join(__dirname,'..','..','views2','index',{title:fhksdjhfs}))
+    }
+    catch(error){
+        res.status(500).send('Error fetching data')
+    }
+}

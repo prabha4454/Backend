@@ -1,0 +1,5 @@
+[0mGET / [36m304 [0m1678.236 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m3.639 ms - -[0m
+[0mPOST /delete/6757c8326699e574100584ba [36m302 [0m280.223 ms - 46[0m
+[0mGET / [32m200 [0m48.592 ms - 161[0m
+[0mGET /stylesheets/style.css [36m304 [0m3.047 ms - -[0m

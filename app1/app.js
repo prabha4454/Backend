@@ -7,9 +7,10 @@ var mongoose=require('mongoose')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const bodyParser = require('body-parser');
+const fs=require('fs')
 var app = express();
 
-mongoose.connect('mongodb+srv://hprabha72:traCeI1r26yKWPqY@cluster0.bafds.mongodb.net/userD',{
+mongoose.connect('mongodb://localhost:27017/UserDetails',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -19,7 +20,11 @@ db.on('error',console.error.bind(console))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+/* app.set('views2', path.join(__dirname, 'views2'));
+app.set('view engine', 'ejs'); */
+
+
+app.use(logger('dev',{stream:fs.createWriteStream(path.join(__dirname,'logs','access.log'),{flag:'a'})}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

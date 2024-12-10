@@ -16,4 +16,6 @@ router.post('/edit/:id',customerRoute.editUser)
 router.post('/delete/:id',customerRoute.deleteUser)
 
 
+
+
 module.exports = router;
