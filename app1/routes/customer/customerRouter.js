@@ -67,7 +67,7 @@ exports.addUser=async(req,res,next)=>{
             uname:req.body.uname,
             password:req.body.password
         });
-        res.redirect('/')
+        res.redirect('302','/')
     }
     catch(err){
         res.status(500).send('Error Updating the Details');

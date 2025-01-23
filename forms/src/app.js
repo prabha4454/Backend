@@ -3,6 +3,10 @@ const app= express()
 const port=process.env.PORT || 5000
 const bodyParser=require ('body-parser')
 const mongoosDb = require('../lib/DB/form.db.js')
+const cors = require ('cors')
+
+app.use(cors())
+
 
 /* database */
 mongoosDb()

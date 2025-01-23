@@ -10,7 +10,7 @@ const surveySchema = new mongoose.Schema(
         required:true
 
       },
-      age:{
+      dob:{
         type:Number,
         required:true
       },

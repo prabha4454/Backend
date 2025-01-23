@@ -6,10 +6,10 @@ const Form1 = require ('../model/form.schema.js')
 
 
 router.post('/submit' , async(req,res) => {
-    const {name , email , age,gender,phone} = req.body;
+    const {fname,lname , email , dob,gender,phone} = req.body;
     const user = new Form1({
-        name ,
-        age,
+        name:fname+lname ,
+        dob,
         gender,
         email ,
         phone
@@ -18,6 +18,7 @@ router.post('/submit' , async(req,res) => {
         try {
             const savedUser = await user.save();
             res.json(savedUser);
+            console.log('Form submitted');
             } catch (err) {
                 res.status(400).json({ message: err.message });
 
