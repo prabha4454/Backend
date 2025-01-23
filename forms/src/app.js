@@ -13,9 +13,8 @@ mongoosDb()
 
 /* middleware */
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
 
-app.use('/submit',require('../routes/form.route.js'))
+app.use('/',require('../routes/form.route.js'))
 
 
 app.listen(port,()=>{

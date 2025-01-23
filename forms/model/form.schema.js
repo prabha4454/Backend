@@ -11,7 +11,7 @@ const surveySchema = new mongoose.Schema(
 
       },
       dob:{
-        type:Number,
+        type:String,
         required:true
       },
       gender:{
@@ -23,7 +23,7 @@ const surveySchema = new mongoose.Schema(
         required:true
     },
     phone:{
-        type:Number,
+        type:String,
         required:true
     },
     
