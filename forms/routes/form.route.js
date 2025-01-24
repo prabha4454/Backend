@@ -32,4 +32,40 @@ router.post('/submit' , async(req,res) => {
 
 })
 
+/* 
+get
+for get user
+ */
+
+
+router.get('/user', async (req, res) => {
+   
+    try {
+        const users = await Form1.find();
+        res.status(200).json(users);
+        } catch (err) {
+            res.status(404).json({ message: err.message });
+            }
+            }
+        )
+
+
+        /* 
+        put
+        
+        to update the details
+        */
+
+        router.put('/user/:id', async (req,res)=>{
+
+            try {
+                await Form1.findByIdAndUpdate(req.body._id ,{
+                  
+
+                })
+            } catch (error) {
+                
+            }
+        })
+
 module.exports = router;
