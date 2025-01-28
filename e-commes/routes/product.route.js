@@ -25,20 +25,40 @@ Get
 all products and cart items
  */
 
-router.get("/home", async (req, res) => {
+router.get("/products", async (req, res) => {
   try {
     const products = await Product.find();
-    const cartItems = await cart.find();
+    
     products
       ? res.status(200).json(products)
       : res.status(404).json({ message: "No products found" });
-    cartItems
-      ? res.status(200).json(cartItems)
-      : res.status(404).json({ message: "cart is empty" });
-  } catch (error) {}
+   
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: "Error fetching products", error });
+  }
 });
 
-module.exports = router;
+
+/* 
+for cart */
+
+router.get("/cart", async (req, res) => {
+  try {
+    const cartItems= await cart.find();
+    cartItems
+    ? res.status(200).json(cartItems)
+    : res.status(404).json({ message: "cart is empty" });}
+    catch (error) {
+      console.log(error)
+      res.status(500).json({
+        message:error
+      })
+    }
+    });
+
+
+
 
 /* 
 post 
@@ -46,7 +66,7 @@ post
 for uploade porducts
 */
 
-router.post("/upload", single("productimg"), async (req, res) => {
+router.post("/upload", upload.single("pimg"), async (req, res) => {
   try {
     const product = new Product({
       name: req.body.name,
@@ -92,3 +112,5 @@ router.post("/addtocart", async (req, res) => {
     res.status(400).json({ message: "product add to cart failed" });
   }
 });
+
+module.exports = router;
