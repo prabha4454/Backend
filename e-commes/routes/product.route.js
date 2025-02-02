@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Product = require("../model/product.model.js");
-const cart = require("../model/cart.model.js");
+const Cart = require("../model/cart.model.js");
+const path = require("path");
+const fs = require("fs");
 
 /* 
 //multer file uploade config
@@ -45,7 +47,7 @@ for cart */
 
 router.get("/cart", async (req, res) => {
   try {
-    const cartItems= await cart.find();
+    const cartItems= await Cart.find();
     cartItems
     ? res.status(200).json(cartItems)
     : res.status(404).json({ message: "cart is empty" });}
@@ -66,13 +68,13 @@ post
 for uploade porducts
 */
 
-router.post("/upload", upload.single("pimg"), async (req, res) => {
+router.post("/upload", upload.single('pimg'), async (req, res) => {
   try {
     const product = new Product({
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
-      pimg: req.file.filename,
+      pimg: req.file ?`/uploads/${req.file.filename}`: null
     });
     await product.save();
     console.log("product is added ");
@@ -87,10 +89,24 @@ post
 add to cart
  */
 
-router.post("/addtocart", async (req, res) => {
+router.post("/addToCart/:_id", async (req, res) => {
+
   try {
     const product = await Product.findById(req.params._id);
-    const cart = await cart.findOne({ user: req.user._id });
+    console.log(product)
+    console.log(req.params.id)
+console.log('hellow')
+    const newcart = new Cart({
+     pimg : product.pimg,
+     name: product.name,
+     price: product.price,
+    });
+    const cart = await newcart.save();
+    console.log('product is added to cart')
+    res.status(201).json({ 
+      message: "product added to cart",
+     });
+    /* const cart = await cart.findOne({ user: req.user._id });
     if (!cart) {
       const newcart = new cart({
         user: req.user._id,
@@ -106,11 +122,86 @@ router.post("/addtocart", async (req, res) => {
         res.status(201).json({ message: "product added to cart" });
       } else {
         res.status(400).json({ message: "product already in cart" });
-      }
-    }
+      } */
+  
   } catch (error) {
     res.status(400).json({ message: "product add to cart failed" });
   }
 });
+
+
+/* 
+DELETE
+for deleting products */
+
+router.delete('/product/:id', async (req,res) =>{
+  try {
+    const product = await Product.findById(req.params.id);
+    const filePath = product.pimg
+    fs.unlink( filePath, (err) => {
+      if (err) {
+        console.error(err)
+        }
+        });
+        
+await Product.findByIdAndDelete(req.params.id);
+    res.status(200).json({message: "product deleted"})
+
+  } catch (error) {
+    res.status(400).json({
+      message:"error deleting the product",
+      error:error.message
+    });
+    console.log(error)
+  }
+});
+ 
+
+/* 
+DELETE
+for deleting cart items
+ */
+
+router.delete('/cart/:id', async (req,res) =>{
+  try {
+    await Cart.findByIdAndDelete(req.params.id);
+    res.status(200).json({message: "product deleted"})
+
+  } catch (error) {
+    res.status(400).json({
+      message:"error deleting the product",
+      error:error.message
+    });
+    console.log(error)
+  }
+});
+
+/* 
+UPDATE
+
+for edit product
+*/
+
+router.post('/edit/:id', async (req,res) =>{
+  try {
+    const product = await Product.findByIdAndUpdate(req.params.id, 
+      {
+       name : req.body.name,
+       price : req.body.price,
+       description : req.body.description,
+       pimg:req.file.name
+
+      });
+    res.status(200).json({message: "product updated"})
+    } catch (error) {
+      res.status(400).json({
+        message:"error updating the product",
+        error:error.message
+       });
+       console.log(error)
+       }
+       });
+
+
 
 module.exports = router;
