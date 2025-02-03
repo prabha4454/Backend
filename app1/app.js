@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const fs=require('fs')
 var app = express();
 
+
 mongoose.connect('mongodb://localhost:27017/UserDetails',{
   useNewUrlParser: true,
   useUnifiedTopology: true

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = 5000;
 const connectDb = require ('../lib/DB/ecommes.db.js')
+const path = require('path')
 
 /* to connect database */
 
@@ -13,12 +14,19 @@ connectDb()
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+    app.use("/uploads",express.static((path.join(__dirname,'..', 'uploads'))));
+   
+
+
+/* app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); */
 
 /* routing middleware */
 
 app.use('/', require('../routes/product.route.js'));
+
 
 
 /* port */
