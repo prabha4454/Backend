@@ -5,14 +5,16 @@ const bodyParser=require ('body-parser')
 const mongoosDb = require('../lib/DB/form.db.js')
 const cors = require ('cors')
 
-app.use(cors())
-
 
 /* database */
 mongoosDb()
 
+
+app.use(cors())
+
 /* middleware */
 app.use(bodyParser.json())
+app.use("/uploads", express.static("uploads"));
 
 app.use('/',require('../routes/form.route.js'))
 

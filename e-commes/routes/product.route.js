@@ -142,6 +142,9 @@ router.delete('/product/:id', async (req,res) =>{
       if (err) {
         console.error(err)
         }
+        else{
+          console.log("product img  is deleted")
+        }
         });
         
 await Product.findByIdAndDelete(req.params.id);
