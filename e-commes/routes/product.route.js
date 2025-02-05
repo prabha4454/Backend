@@ -137,7 +137,7 @@ for deleting products */
 router.delete('/product/:id', async (req,res) =>{
   try {
     const product = await Product.findById(req.params.id);
-    const filePath = product.pimg
+    const filePath =`${product.pimg}` 
     fs.unlink( filePath, (err) => {
       if (err) {
         console.error(err)
