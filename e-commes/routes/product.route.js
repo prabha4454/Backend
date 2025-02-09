@@ -89,12 +89,12 @@ post
 add to cart
  */
 
-router.post("/addToCart/:_id", async (req, res) => {
+router.post("/addToCart/:id", async (req, res) => {
 
   try {
     const product = await Product.findById(req.params._id);
     console.log(product)
-    console.log(req.params.id)
+    console.log(req.params._id)
 console.log('hellow')
     const newcart = new Cart({
      pimg : product.pimg,
@@ -137,10 +137,10 @@ for deleting products */
 router.delete('/product/:id', async (req,res) =>{
   try {
     const product = await Product.findById(req.params.id);
-    const filePath =`${product.pimg}` 
+    const filePath =product.pimg
     fs.unlink( filePath, (err) => {
       if (err) {
-        console.error(err)
+        console.error(err.message)
         }
         else{
           console.log("product img  is deleted")
@@ -155,7 +155,7 @@ await Product.findByIdAndDelete(req.params.id);
       message:"error deleting the product",
       error:error.message
     });
-    console.log(error)
+    console.log(error.message)
   }
 });
  
