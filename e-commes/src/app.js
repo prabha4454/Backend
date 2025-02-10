@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 /* routing middleware */
 
 app.use('/', require('../routes/product.route.js'));
+app.use("/api/auth",require("../routes/auth.route.js"))
 
 
 
