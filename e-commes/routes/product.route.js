@@ -93,9 +93,9 @@ router.post("/addToCart/:id", async (req, res) => {
 
   try {
     const product = await Product.findById(req.params._id);
-    console.log(product)
+   /*  console.log(product)
     console.log(req.params._id)
-console.log('hellow')
+console.log('hellow') */
     const newcart = new Cart({
      pimg : product.pimg,
      name: product.name,
@@ -125,7 +125,8 @@ console.log('hellow')
       } */
   
   } catch (error) {
-    res.status(400).json({ message: "product add to cart failed" });
+    res.status(400).json({ message: "product add to cart failed",error });
+    console.log(error)
   }
 });
 
