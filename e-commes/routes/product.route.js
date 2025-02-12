@@ -89,13 +89,13 @@ post
 add to cart
  */
 
-router.post("/addToCart/:id", async (req, res) => {
+router.post("/addToCart/:_id", async (req, res) => {
 
   try {
     const product = await Product.findById(req.params._id);
-   /*  console.log(product)
+    console.log(product)
     console.log(req.params._id)
-console.log('hellow') */
+console.log('hellow')
     const newcart = new Cart({
      pimg : product.pimg,
      name: product.name,
@@ -135,7 +135,7 @@ console.log('hellow') */
 DELETE
 for deleting products */
 
-router.delete('/product/:id', async (req,res) =>{
+router.delete('/product/:_id', async (req,res) =>{
   try {
     const product = await Product.findById(req.params.id);
     const filePath =product.pimg
@@ -166,7 +166,7 @@ DELETE
 for deleting cart items
  */
 
-router.delete('/cart/:id', async (req,res) =>{
+router.delete('/cart/:_id', async (req,res) =>{
   try {
     await Cart.findByIdAndDelete(req.params.id);
     res.status(200).json({message: "product deleted"})
@@ -186,7 +186,7 @@ UPDATE
 for edit product
 */
 
-router.post('/edit/:id', async (req,res) =>{
+router.post('/edit/:_id', async (req,res) =>{
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, 
       {
